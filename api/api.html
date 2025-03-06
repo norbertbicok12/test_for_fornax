@@ -45,7 +45,7 @@
 </head>
 <body>
     <h1>This is a List of Posts from JSONPlaceholder API</h1>
-    <p id="error">Failed to load data.</p>
+    <p id="error"></p>
     <p id="loading">Loading...</p>
     <input type="text" id="search" placeholder="Search posts...">
     <div id="posts"></div>
@@ -61,6 +61,7 @@
                 const posts = await response.json();
                 return posts;
             } catch (error) {
+                document.getElementById('error').innerText = error.message;
                 document.getElementById('error').style.display = 'block';
                 console.log(error);
             }
@@ -86,6 +87,8 @@
                     postsContainer.appendChild(postElement);
                 });
             } catch (error) {
+                document.getElementById('error').innerText = error.message;
+                document.getElementById('error').style.display = 'block';
                 console.error('Error displaying posts:', error);
             }
         }
